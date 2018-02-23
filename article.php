@@ -53,6 +53,7 @@
         <p><?php echo $post->post_duration; ?></p>
         <p><?php echo $post->post_language; ?></p>
         <p><?php echo $post->post_subs; ?></p>
+				<p>Qualité: <?php echo $post->post_quality; ?></p>
         <p><?php echo $post->post_synopsis; ?></p>
         <p><?php echo $post->post_ba; ?></p>
 			</div>
