@@ -56,6 +56,7 @@
 				<p>Qualité: <?php echo $post->post_quality; ?></p>
         <p><?php echo $post->post_synopsis; ?></p>
         <p><?php echo $post->post_ba; ?></p>
+				<img src="<?php echo $post->post_pic; ?>" />
 			</div>
 		<?php endforeach; ?>
 	</body>

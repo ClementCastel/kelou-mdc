@@ -16,7 +16,7 @@
 		<title>Insert Post</title>
 	</head>
 	<body>
-		<form method="post">
+		<form method="post" enctype="multipart/form-data">
 			<p>Titre : <input type="text" name="post_title" /></p>
 			<p>Date : <input type="text" name="post_date" /></p>
 			<p>Réalisateur : <input type="text" name="post_real" /></p>
@@ -42,6 +42,7 @@
 			</p>
 			<p>Synopsis : <input type="text" name="post_synopsis" /></p>
 			<p>Bande-Annonce : <input type="text" name="post_ba" /></p>
+			<p><input type="file" name="post_pic" /></p>
 				<input type="submit" value="Submit" />
 			</p>
 		</form>
