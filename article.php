@@ -40,11 +40,16 @@
         <p><?php echo $post->post_real; ?></p>
         <p><?php echo $post->post_actors; ?></p>
         <p><?php
-					$kind = unserialize($post->post_kind);
-				print_r($kind);
-
-
-				?></p>
+				$kind = unserialize($post->post_kind);
+				$skind = sizeof($kind);
+				if ($skind == 1) {
+					echo $kind[0];
+				} elseif ($skind == 2) {
+					echo ($kind[0].' / '.$kind[1]);
+				} elseif ($skind == 3) {
+					echo ($kind[0].' / '.$kind[1].' / '.$kind[2]);
+				}
+					//echo $kind[0]; ?> / <?php //echo $kind[1]; ?></p>
         <p><?php echo $post->post_duration; ?></p>
         <p><?php echo $post->post_language; ?></p>
         <p><?php echo $post->post_subs; ?></p>

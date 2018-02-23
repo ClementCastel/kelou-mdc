@@ -21,16 +21,16 @@
 			<p>Date : <input type="text" name="post_date" /></p>
 			<p>Réalisateur : <input type="text" name="post_real" /></p>
 			<p>Acteurs : <input type="text" name="post_actors" /></p>
-			<p>Genre : <input type="checkbox" name="post_kind[animation]" value="animation" /> animation
-				<input type="checkbox" name="post_kind[biopic]" value="biopic" /> biopic
-				<input type="checkbox" name="post_kind[comedie]" value="comedie" /> comedie
-				<input type="checkbox" name="post_kind[documentaire]" value="documentaire" /> documentaire
-				<input type="checkbox" name="post_kind[drame]" value="drame" /> drame
-				<input type="checkbox" name="post_kind[fantastique]" value="fantastique" /> fantastique
-				<input type="checkbox" name="post_kind[horreur]" value="horreur" /> horreur
-				<input type="checkbox" name="post_kind[historique]" value="historique" /> historique
-				<input type="checkbox" name="post_kind[policier]" value="policier" /> policier
-				<input type="checkbox" name="post_kind[aventure]" value="aventure" /> aventure
+			<p>Genre : <input type="checkbox" name="post_kind[kind]" value="animation" /> animation
+				<input type="checkbox" name="post_kind[]" value="biopic" /> biopic
+				<input type="checkbox" name="post_kind[]" value="comedie" /> comedie
+				<input type="checkbox" name="post_kind[]" value="documentaire" /> documentaire
+				<input type="checkbox" name="post_kind[]" value="drame" /> drame
+				<input type="checkbox" name="post_kind[]" value="fantastique" /> fantastique
+				<input type="checkbox" name="post_kind[]" value="horreur" /> horreur
+				<input type="checkbox" name="post_kind[]" value="historique" /> historique
+				<input type="checkbox" name="post_kind[]" value="policier" /> policier
+				<input type="checkbox" name="post_kind[]" value="aventure" /> aventure
 			</p>
 			<p>Durée : <input type="text" name="post_duration" /></p>
 			<p>Langues : <input type="text" name="post_language" /></p>
