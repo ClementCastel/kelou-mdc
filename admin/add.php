@@ -14,6 +14,7 @@
 <html>
 	<head>
 		<title>Insert Post</title>
+		<meta charset="utf-8" />
 	</head>
 	<body>
 		<form method="post" enctype="multipart/form-data">
@@ -41,7 +42,8 @@
 				<label for="quality"><input type="radio" name="post_quality" value="1080p" />1080p</label>
 			</p>
 			<p>Synopsis : <input type="text" name="post_synopsis" /></p>
-			<p>Bande-Annonce : <input type="text" name="post_ba" /></p>
+			<p>Bande-Annonce : <input type="url" name="post_ba" /></p>
+			<input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
 			<p><input type="file" name="post_pic" /></p>
 				<input type="submit" value="Submit" />
 			</p>

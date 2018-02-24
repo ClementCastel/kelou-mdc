@@ -65,7 +65,7 @@
     <div class="dark"><a class="txt">Qualité: <?php echo $post->post_quality; ?></a></div>
 		<div class="synopsis"><p><i><b>Synopsis:</b></i><br /><br /><?php echo $post->post_synopsis; ?></p></div>
 		<div class="trailer"><a class="txt" style="font-size: 25px;">Trailer:</a><br />
-			<iframe width="853" height="480" src="".<?php echo $post->post_ba; ?>."" frameborder="0" allowfullscreen></iframe></div>
+			<iframe width="853" height="480" src=<?php echo $post->post_ba; ?> frameborder="0" allowfullscreen></iframe></div>
 		<?php endforeach; ?>
 	</div>
 	</div>

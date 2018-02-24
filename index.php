@@ -34,7 +34,7 @@
 	<div>
 	<nav id="sidebar">
 	  <ul>
-	    <a href="./index.html"><i class="fa fa-film icon" style="color: #FFFFFF;" aria-hidden="true"></i></a>
+	    <a href="./index.php"><i class="fa fa-film icon" style="color: #FFFFFF;" aria-hidden="true"></i></a>
 	    <i class="fa fa-television icon" style="color: #FFFFFF;" aria-hidden="true"></i>
 	  </ul></nav>
 	<div class="highbar">
@@ -43,7 +43,7 @@
 	<div class="divider">
 
 		<?php foreach ( $posts_array as $post ) : ?>
-			<div class="article" style="background-image: url(./assets/uploads/<?php echo $post->post_pic; ?>); background-size: cover; background-repeat: no-repeat;">
+			<div class="article" style="background-image: url(<?php echo $post->post_pic; ?>); background-size: cover; background-repeat: no-repeat;">
 					<a href="./article.php?p=<?php echo $post->ID; ?>">
 					<p class="name"><?php echo $post->post_title ?></p></a></div>
 		<?php endforeach; ?>
