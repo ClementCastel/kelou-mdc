@@ -24,40 +24,50 @@
 ?>
 
 <html>
+<?php foreach ( $posts_array as $post ) : ?>
 	<head>
-		<title></title>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+		<title>Kelou MDC - <?php echo $post->post_title; ?></title>
+		<meta charset="utf-8" />
+		<link type="text/css" rel="stylesheet" href="./assets/css/main.css"/>
 	</head>
 
 	<body>
-		<div>
-			<h1><a href="./index.php">Retour à l'index</a></h1>
-		</div>
-		<?php foreach ( $posts_array as $post ) : ?>
-			<div class="post">
-				<h1><?php echo $post->post_title; ?></h1>
-        <p><?php echo $post->post_date; ?></p>
-        <p><?php echo $post->post_real; ?></p>
-        <p><?php echo $post->post_actors; ?></p>
-        <p><?php
-				$kind = unserialize($post->post_kind);
-				$skind = sizeof($kind);
-				if ($skind == 1) {
-					echo $kind[0];
-				} elseif ($skind == 2) {
-					echo ($kind[0].' / '.$kind[1]);
-				} elseif ($skind == 3) {
-					echo ($kind[0].' / '.$kind[1].' / '.$kind[2]);
-				}
-					//echo $kind[0]; ?> / <?php //echo $kind[1]; ?></p>
-        <p><?php echo $post->post_duration; ?></p>
-        <p><?php echo $post->post_language; ?></p>
-        <p><?php echo $post->post_subs; ?></p>
-				<p>Qualité: <?php echo $post->post_quality; ?></p>
-        <p><?php echo $post->post_synopsis; ?></p>
-        <p><?php echo $post->post_ba; ?></p>
-				<img src="<?php echo $post->post_pic; ?>" />
-			</div>
+	<nav id="sidebar">
+	  <ul>
+	    <a href="./index.php"><i class="fa fa-film icon" style="color: #FFFFFF;" aria-hidden="true"></i></a>
+	    <i class="fa fa-television icon" style="color: #FFFFFF;" aria-hidden="true"></i>
+	  </ul></nav>
+	<div class="highbar">
+	  <h4>Kelou Mediacenter - <?php echo $post->post_title; ?></h4>
+	</div>
+	<div class="content">
+	  <img src="<?php echo $post->post_pic; ?>" class="full"/>
+	<div class="content">
+	  <div class="barre-noire"></div>
+	<div class="data">
+		<div class="grey"><a class="txt">Date de sortie: <?php echo $post->post_date; ?></a></div>
+	  <div class="dark"><a class="txt">Réalisateur: <?php echo $post->post_real; ?></a></div>
+	  <div class="grey"><a class="txt">Acteurs: <?php echo $post->post_actors; ?></a></div>
+
+	  <div class="dark"><a class="txt">Genre: <?php		$kind = unserialize($post->post_kind);
+						$skind = sizeof($kind);
+						if ($skind == 1) {
+							echo $kind[0];
+						} elseif ($skind == 2) {
+							echo ($kind[0].' / '.$kind[1]);
+						} elseif ($skind == 3) {
+							echo ($kind[0].' / '.$kind[1].' / '.$kind[2]);
+						} ?></a></div>
+
+	  <div class="grey"><a class="txt">Durée: <?php echo $post->post_duration; ?></a></div>
+    <div class="dark"><a class="txt">Langues: <?php echo $post->post_language; ?></a></div>
+    <div class="grey"><a class="txt">Sous-titres: <?php echo $post->post_subs; ?></a></div>
+    <div class="dark"><a class="txt">Qualité: <?php echo $post->post_quality; ?></a></div>
+		<div class="synopsis"><p><i><b>Synopsis:</b></i><br /><br /><?php echo $post->post_synopsis; ?></p></div>
+		<div class="trailer"><a class="txt" style="font-size: 25px;">Trailer:</a><br />
+			<iframe width="853" height="480" src="".<?php echo $post->post_ba; ?>."" frameborder="0" allowfullscreen></iframe></div>
 		<?php endforeach; ?>
+	</div>
+	</div>
 	</body>
 </html>
