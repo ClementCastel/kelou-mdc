@@ -8,11 +8,14 @@
 
 				$kind = serialize($postdata['post_kind']);
 
+				print_r($_FILES);
+				printf($_FILES['post_pic']['tmp_name']);
 				$name = time();
 				$_FILES['post_pic']['name'] = $name;
 				$path = 'C:\wamp64\www\kelou-mdc\uploads/'.$_FILES['post_pic']['name'].'.jpg';
 				move_uploaded_file($_FILES['post_pic']['tmp_name'], $path);
 				$path_file = "./uploads/".$name.".jpg";
+				printf($_FILES['post_pic']['tmp_name']);
 
 				$data[0] = addslashes($postdata['post_title']);
 				$data[1] = addslashes($postdata['post_date']);
