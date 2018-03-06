@@ -40,9 +40,6 @@
       <!-- - REALISATEUR - -->
       <li><input type="text" class="inputFields" name="post_real" placeholder="Réalisateur" required/></li>
 
-      <!-- - ACTEURS - -->
-      <li><input type="text" class="inputFields" name="post_actors" placeholder="Acteurs (/)" required/></li>
-
       <!-- - GENRE - -->
       <li style="column-width: 12rem">
         <label class="container">Animation
@@ -112,6 +109,15 @@
           <span class="checkmarkQ"></span>
         </label>
       </li>
+
+			<!-- - IMDb - -->
+      <li><input type="url" class="inputFields" name="post_imdb" placeholder="imdb link" required/></li>
+
+			<!-- - Allocine - -->
+			<li><input type="url" class="inputFields" name="post_allocine" placeholder="allocine link" required/></li>
+
+			<!-- - Rottent Tomatoes - -->
+			<li><input type="url" class="inputFields" name="post_rt" placeholder="rotten tomatoes link" required/></li>
 
       <!-- - SYNOPSIS - -->
       <li><input type="text" class="inputFields" name="post_synopsis" placeholder="Synopsis" required/></li>

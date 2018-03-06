@@ -47,9 +47,8 @@
 	<div class="data">
 		<div class="grey"><a class="txt">Date de sortie: <?php echo $post->post_date; ?></a></div>
 	  <div class="dark"><a class="txt">Réalisateur: <?php echo $post->post_real; ?></a></div>
-	  <div class="grey"><a class="txt">Acteurs: <?php echo $post->post_actors; ?></a></div>
 
-	  <div class="dark"><a class="txt">Genre: <?php		$kind = unserialize($post->post_kind);
+	  <div class="grey"><a class="txt">Genre: <?php		$kind = unserialize($post->post_kind);
 						$skind = sizeof($kind);
 						if ($skind == 1) {
 							echo $kind[0];
@@ -59,10 +58,20 @@
 							echo ($kind[0].' / '.$kind[1].' / '.$kind[2]);
 						} ?></a></div>
 
-	  <div class="grey"><a class="txt">Durée: <?php echo $post->post_duration; ?></a></div>
-    <div class="dark"><a class="txt">Langues: <?php echo $post->post_language; ?></a></div>
-    <div class="grey"><a class="txt">Sous-titres: <?php echo $post->post_subs; ?></a></div>
-    <div class="dark"><a class="txt">Qualité: <?php echo $post->post_quality; ?></a></div>
+	  <div class="dark"><a class="txt">Durée: <?php echo $post->post_duration; ?></a></div>
+
+    <div class="grey"><a class="txt">Langues:&nbsp;&nbsp;&nbsp;&nbsp;	<?php if(preg_match("/FR/i", $post->post_language)) { ?><img src="./assets/images/FR.png" class="flag" />&nbsp;&nbsp;&nbsp; <?php }
+		 if(preg_match("/EN/i", $post->post_language)) { ?><img src="./assets/images/UK.png" class="flag" />&nbsp;&nbsp;&nbsp;<?php }
+		 if(preg_match("/ES/i", $post->post_language)) { ?><img src="./assets/images/ES.png" class="flag" /><?php } ?></a></div>
+
+    <div class="dark"><a class="txt">Sous-titres:	<?php if(preg_match("/FR/i", $post->post_language)) { ?><img src="./assets/images/FR.png" class="flag" />&nbsp;&nbsp;&nbsp; <?php }
+		 if(preg_match("/EN/i", $post->post_language)) { ?><img src="./assets/images/UK.png" class="flag" />&nbsp;&nbsp;&nbsp;<?php }
+		 if(preg_match("/ES/i", $post->post_language)) { ?><img src="./assets/images/ES.png" class="flag" /><?php } ?></a></div>
+
+    <div class="grey"><a class="txt">Qualité: <?php echo $post->post_quality; ?></a></div>
+		<div class="dark"><a class="txt">+ d'infos: <a href="<?php echo $post->post_imdb ?>"><img src="./assets/images/IMDb.png" class="link"/></a>
+			<a href="<?php echo $post->post_allocine ?>"><img src="./assets/images/Allocine.png" class="link"/></a>
+			<a href="<?php echo $post->post_rt ?>"><img src="./assets/images/Rotten.png" class="link"/></a></a></div>
 		<div class="synopsis"><p><i><b>Synopsis:</b></i><br /><br /><?php echo $post->post_synopsis; ?></p></div>
 		<div class="trailer"><a class="txt" style="font-size: 25px;">Trailer:</a><br />
 			<iframe width="853" height="480" src=<?php echo $post->post_ba; ?> frameborder="0" allowfullscreen></iframe></div>

@@ -169,3 +169,15 @@ iframe {
   margin-left: 510px;
   margin-top: 0px;
 }
+
+.flag {
+  width: 70px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+.link {
+  width: 120px;
+  height: 40px;
+  vertical-align: middle;
+}
