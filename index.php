@@ -39,6 +39,7 @@
 	  </ul></nav>
 	<div class="highbar">
 	  <h4>KELOU MEDIACENTER - DEV EDIT</h4>
+		<a href="./admin/add.php"><button class="Add-button">Add a movie</button></a>
 	</div>
 	<div class="divider">
 

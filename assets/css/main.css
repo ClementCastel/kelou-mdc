@@ -53,6 +53,24 @@ a:link {
   width: 100%;
 }
 
+.Add-button {
+  width: 200px;
+  height: 30px;
+  background-color: #b50000;
+  color: white;
+  position: fixed;
+  right: 50px;
+  top: 5px;
+  border-radius: 5px;
+  border-color: black;
+  text-align: center;
+}
+
+.Add-button:hover {
+  background-color: #820000;
+  color: #c6c6c6;
+}
+
 h4 {
   margin: 10px;
   text-align: center;
