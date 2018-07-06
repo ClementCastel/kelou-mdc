@@ -25,7 +25,7 @@
 				$data[8] = addslashes($postdata['post_ba']);
 
 				$query = "
-								INSERT INTO posts (post_title, post_date, post_real, post_kind, post_duration, post_language, post_subs, post_quality, post_synopsis, post_ba, post_pic)
+								INSERT INTO 'posts' (post_title, post_date, post_real, post_kind, post_duration, post_language, post_subs, post_quality, post_synopsis, post_ba, post_pic)
 								VALUES ('$data[0]', '$data[1]', '$data[2]', '$kind', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]', '$data[8]', '$path_file')
 							";
 				return $db->insert($query);

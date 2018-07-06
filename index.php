@@ -8,18 +8,12 @@
 		if ( !empty ( $_GET['p'] ) ) {
 			$post = $_GET['p'];
 		}
-
-		if ( !empty ( $_GET['cat'] ) ) {
-			$cat = $_GET['cat'];
-		}
 	}
 
-	if ( empty ( $post ) && empty ( $cat ) ) {
+	if ( empty ( $post )) {
 		$posts_array = $query->all_posts();
 	} elseif ( !empty ( $post ) ) {
 		$posts_array = $query->post($post);
-	} elseif ( !empty ( $cat ) ) {
-		echo 'cat';
 	}
 ?>
 <html>
