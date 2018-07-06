@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html style="height:100%;width:100%;">
 
 <head>
@@ -18,28 +19,30 @@
         <div style="/*position:fixed;*/width:100%;height:60px;background-color:rgb(47,19,69);padding:0;margin:0;top:0;left:0;border-bottom-color:rgb(0,0,0);border-bottom-style:dashed;">
             <div><i class="fa fa-film" style="padding:0;color:rgb(255,255,255);font-size:40px;margin-top:10px;margin-left:15px;"></i><i class="fa fa-tv" style="padding:0;color:rgb(255,255,255);font-size:40px;margin:0;margin-left:15px;"></i>
                 <p class="text-center"
-                    style="color:rgb(250,255,0);font-family:'Barlow Condensed', sans-serif;font-size:40px;margin-left:120px;margin-bottom:0;padding:0;margin-right:200px;margin-top:-53px;font-weight:bold;font-style:italic;">KMDC - Home</p><button class="btn btn-primary" type="button" style="float:right;margin-top:-50px;margin-right:20px;padding-top:8px;padding-bottom:8px;">Ajouter un film</button></div>
+                    style="color:rgb(250,255,0);font-family:'Barlow Condensed', sans-serif;font-size:40px;margin-left:120px;margin-bottom:0;padding:0;margin-right:200px;margin-top:-53px;font-weight:bold;font-style:italic;">KMDC - Home</p><a href="./admin/add.php"><button class="btn btn-primary" type="button" style="float:right;margin-top:-50px;margin-right:20px;padding-top:8px;padding-bottom:8px;">Ajouter un film</button></a></div>
         </div>
         <div class="divider" style="width:100%;height:100%;color:rgb(37,37,39);margin:0;padding:0;padding-top:50px;padding-left:75px;padding-right:75px;display:grid;grid-auto-rows:350px;">
 
+
 <?php
-          require_once('config.php');
-          $conn = mysqli_connect(host, user,pass, db);
+      require_once('config.php');
+      $conn = mysqli_connect(host, user,pass, db);
 
-          $sql = "SELECT * FROM movies";
-          $result = mysqli_query($conn, $sql);
+      $sql = "SELECT * FROM movies";
+      $result = mysqli_query($conn, $sql);
 
-          if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_assoc($result)){
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_assoc($result)){ ?>
 
-            echo"<div class='p-movie' style='width:180px;height:335px;'>
-                <div class='movie' style='width:180px;height:270px;background-image:url(".$data['poster'].");'></div>
-                <div style='height:65px;background-color:#ffffff;align-content:center;width:180px;line-height:65px;text-align:center;'>
-                    <p style='font-family:'Barlow Condensed', sans-serif;font-size:20px;color:rgb(0,0,0);font-weight:normal;font-style:normal;width:100%;vertical-align:middle;display:inline-block;line-height:1.2;margin-bottom:0;margin-top:-5px;'>".$data['title']."</p>
+            <div class="p-movie" style="width:180px;height:335px;">
+                <div class="movie" style="width:180px;height:270px;background-image:url(&quot; <?php echo $data['poster']?> &quot;);"></div>
+                <div style="height:65px;background-color:#ffffff;align-content:center;width:180px;line-height:65px;text-align:center;">
+                    <p style="font-family:'Barlow Condensed', sans-serif;font-size:20px;color:rgb(0,0,0);font-weight:normal;font-style:normal;width:100%;vertical-align:middle;display:inline-block;line-height:1.2;margin-bottom:0;margin-top:-5px;"><?php echo $data['title']?></p>
                 </div>
-            </div>";
-          }
-        }
+            </div>
+
+      <?php }
+      }
 
 ?>
 
