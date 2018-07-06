@@ -6,6 +6,7 @@ print_r($_POST);
 if (isset($_POST['submit'])){ //vérification que le formulaire a bien été envoyé
 
 $title = addslashes($_POST['title']);
+$title = strtoupper($title);
 $date = addslashes($_POST['date']);
 $real = addslashes($_POST['real']);
 $actors = addslashes($_POST['actors']);
