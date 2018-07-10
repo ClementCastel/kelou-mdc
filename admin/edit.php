@@ -1,104 +1,83 @@
 <?php
-	error_reporting(E_ALL);
-	ini_set('display_errors', '1');
+require_once('config.php');
+$conn = mysqli_connect(host, user,pass, db);
 
-	require_once('../includes/class-query.php');
-	$conn = new mysqli('localhost', 'root', '', 'kmdc');
+if (!empty($_POST) && !empty($_GET['id'])){
+  $id = $_GET['id'];
 
-	if ( !empty ( $_GET ) ) {
-		if ( !empty ( $_GET['id']) ) {
-			$post = $_GET['id'];
-      $id = $_GET['id'];
-		}
-	}
+  $data[0] = $_POST['title'];
+  $data[1] = $_POST['subtitle'];
+  $data[2] = $_POST['content'];
+  $data[3] = $_POST['note'];
 
-	if ( empty ( $post ) ) {
-		$posts_array = $query->all_posts();
-	} elseif ( !empty ( $post ) ) {
-		$posts_array = $query->post($post);
-	}
-
-
-if (!empty($_GET['edit'])){
-if ($_GET['edit'] == 1){
-if (!empty($_POST)){
-  $data[0] = addslashes($_POST['post_title']);
-  $data[1] = addslashes($_POST['post_date']);
-  $data[2] = addslashes($_POST['post_real']);
-  $data[4] = addslashes($_POST['post_duration']);
-  $data[5] = addslashes($_POST['post_language']);
-  $data[6] = addslashes($_POST['post_subs']);
-  $data[7] = $_POST['post_imdb'];
-  $data[8] = $_POST['post_allocine'];
-  $data[9] = $_POST['post_rt'];
-  $data[10] = addslashes($_POST['post_synopsis']);
-  $data[11] = addslashes($_POST['post_ba']);
-
-
-  $query = "UPDATE posts
-            SET post_title = '$data[0]', post_date = '$data[1]', post_real = '$data[2]', post_duration = '$data[4]', post_language = '$data[5]', post_subs = '$data[6]', post_imdb = '$data[7]', post_allocine = '$data[8]', post_rt = '$data[9]', post_synopsis = '$data[10]', post_ba = '$data[11]'
+  $query = "UPDATE articles
+            SET title = '$data[0]', subtitle = '$data[1]', content = '$data[2]', note = '$data[3]'
             WHERE ID = $id
   ";
 
-	if ($conn->query($query) === TRUE) {
-	echo "Record updated successfully";
-} else {
-	echo "Error updating record: " . $conn->error;
-}}}}
+  $update = mysqli_query($conn, $query);
 
-if (!empty($_GET['delete']) && !empty($_GET['id'])){
-
-		$query = "DELETE FROM posts
-		 				 WHERE ID = $id
-		";
-
-		if ($conn->query($query) === TRUE) {
-				echo "Suppression réussie";
-		} else {
-			echo "raté" . $conn->error;
-		}
-
+  if ($update){
+    echo 'Article mis à jour ! <br />';
+  } else {
+    echo 'Une erreur est arrivée';
+  }
 }
 
-?>
+if (!empty($_GET['id']) && $_GET['delete'] == 2){
+  $id = $_GET['id'];
+
+  $query = "DELETE FROM articles WHERE `id` = $id";
+
+  $delete = mysqli_query($conn, $query);
+
+  if ($delete){
+    echo "L'article a bien été supprimé <br />";
+    echo "<a href='../index.php'>Retour à l'acceuil</a>";
+  } else{
+    echo 'Une erreur est survenue lors de la suppression';
+  }
+}
+ ?>
 
 <html>
-  <head>
-    <title>KMDC - EDIT</title>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <p><a href="edit.php">RETOUR</a></p>
-    <div class="list">
-      <?php foreach ( $posts_array as $post ) : ?>
-  					<a href="../article.php?p=<?php echo $post->ID; ?>">
-  					<p class="name"><?php echo $post->post_title ?></a> || <a href="./edit.php?id=<?php echo $post->ID; ?>&edit=1" >EDIT</a> || <a href="./edit.php?id=<?php echo $post->ID; ?>&edit=2"> DELETE </a></p>
+<head>
+  <title>Page d'édition</title>
+  <meta charset="utf-8" />
+</head>
+<body>
+<?php if (!empty($_GET['id']) && empty($_GET['delete'])){
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM articles WHERE ID = '$id'";
+  $result = mysqli_query($conn, $sql);
 
-            <?php if (!empty($_GET['edit']) && $_GET['edit'] == 1) { ?>
-                <form method="post" enctype="multipart/form-data" action="edit.php?id=<?php echo $post->ID?>&edit=1">
-                    <input type="text" name="post_title" value="<?php echo $post->post_title; ?>" required /><br /><br />
-                    <input type="text" name="post_date" value="<?php echo $post->post_date; ?>" required /><br /><br />
-                    <input type="text" name="post_real" value="<?php echo $post->post_real; ?>" required /><br /><br />
-                    <input type="text" name="post_duration" value="<?php echo $post->post_duration; ?>" required /><br /><br />
-                    <input type="text" name="post_language" value="<?php echo $post->post_language; ?>" required /><br /><br />
-                    <input type="text" name="post_subs" value="<?php echo $post->post_subs; ?>" required /><br /><br />
-                    <input type="text" name="post_imdb" value="<?php echo $post->post_imdb; ?>" required /><br /><br />
-                    <input type="text" name="post_allocine" value="<?php echo $post->post_allocine; ?>" required /><br /><br />
-                    <input type="text" name="post_rt" value="<?php echo $post->post_rt; ?>" required /><br /><br />
-                    <input type="text" name="post_synopsis" value="<?php echo $post->post_synopsis; ?>" required /><br /><br />
-                    <input type="text" name="post_ba" value="<?php echo $post->post_ba; ?>" required /><br /><br />
-                    <input type="submit" value="Modifier"/>
-                </form>
-            <?php } else if (!empty($_GET['edit']) && $_GET['edit'] == 2){ ?>
+    while ($data = mysqli_fetch_assoc($result)){;?>
 
-								<h2> Voulez vous vraiment supprimer l'article: </h2>
-								<h4>	<a href="../article.php?p=<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></a>  ?</h4>
+<form method="post">
+  <input type="text" placeholder="Titre" name="title" required value="<?php echo ($data['title']); ?>" /><br /><br />
+  <input type="text" placeholder="Sous-titre" name="subtitle" required value="<?php echo ($data['subtitle']); ?>" /><br /><br />
+  Contenu de l'article:<br />
+  <textarea name="content" required><?php echo ($data['content']); ?></textarea><br /><br />
+  1.<input type="radio" name="note" value="1" <?php if ($data['note'] == "1"){echo('checked');}else{}?>/><br /><br />
+  2.<input type="radio" name="note" value="2" <?php if ($data['note'] == "2"){echo('checked');}else{}?>/><br /><br />
+  3.<input type="radio" name="note" value="3" <?php if ($data['note'] == "3"){echo('checked');}else{}?>/><br /><br />
+  <input type="submit" name="submit" value="Mettre à jour"/>
+</form>
 
-								<br /><button><a href="./edit.php?id=<?php echo $post->ID; ?>&delete=1">Supprimer</a></button>
 
-					<?php }?>
+<?php }} else if (empty($_GET['id'])){
+  $sql = "SELECT * FROM articles";
+  $result = mysqli_query($conn, $sql);
 
-  		<?php endforeach; ?>
-    </div>
-  </body>
+  if (mysqli_num_rows($result) > 0){
+    while ($data = mysqli_fetch_assoc($result)){
+      echo ('<a href=../article.php?id='.$data['ID'].'>'.$data['title'].'</a> | <a href=edit.php?id='.$data['ID'].'>Editer</a> | <a href=edit.php?id='.$data['ID'].'&delete=1>Supprimer</a><br /><br />');
+    }
+  }
+}
+  if (!empty($_GET['id']) && $_GET['delete'] == 1){ ?>
+    Voulez vous vraiment supprimer cet article ? <br /><br />
+    <a href="edit.php?id=<?php echo ($_GET['id']);?>&delete=2"><button>Supprimer définitivement</button></a>
+<?php  } ?>
+</body>
 </html>
