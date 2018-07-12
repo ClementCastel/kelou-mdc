@@ -25,24 +25,6 @@
 
 
 <?php
-<<<<<<< HEAD
-	error_reporting(E_ALL);
-	ini_set('display_errors', '1');
-
-	require_once('includes/class-query.php');
-
-	if ( !empty ( $_GET ) ) {
-		if ( !empty ( $_GET['p'] ) ) {
-			$post = $_GET['p'];
-		}
-	}
-
-	if ( empty ( $post )) {
-		$posts_array = $query->all_posts();
-	} elseif ( !empty ( $post ) ) {
-		$posts_array = $query->post($post);
-	}
-=======
       require_once('config.php');
       $conn = mysqli_connect(host, user,pass, db);
 
@@ -62,8 +44,6 @@
 
       <?php }
       }
-
->>>>>>> dev
 ?>
 
         </div>
