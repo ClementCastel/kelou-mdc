@@ -30,7 +30,11 @@ $id = $_GET['id'];
           $sql = "SELECT * FROM movies WHERE ID = '$id'";
           $result = mysqli_query($conn, $sql);
 
-            while ($data = mysqli_fetch_assoc($result)){ ?>
+            while ($data = mysqli_fetch_assoc($result)){
+
+
+            if ($data['user'] == $_SESSION['username']) {  ?>
+
 
 
 
@@ -87,8 +91,8 @@ $id = $_GET['id'];
                         <p style="color:rgb(39,43,48);font-size:15px;font-family:'Barlow Condensed', sans-serif;margin-left:10px;">date of upload : <?php echo $data['time']; ?></p>
                 </div>
 
-              <?php }
-            }
+              <?php } else {}
+            }}
             ?>
 
             </div>

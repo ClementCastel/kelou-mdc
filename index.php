@@ -35,7 +35,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true){
 <?php
       $conn = mysqli_connect(host, user,pass, db);
 
-      $sql = "SELECT * FROM movies";
+      $sql = "SELECT * FROM movies WHERE user='$_SESSION[username]'";
       $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0){

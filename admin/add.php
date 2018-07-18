@@ -3,6 +3,11 @@ require_once('../config.php');
 $conn = mysqli_connect(host, user,pass, db); //connection à la base de données
 print_r($_POST);
 
+if (isset($_SESSION['logged']) && $_SESSION['logged'] == true){
+} else {
+  header("Location: login.php");
+}
+
 if (isset($_POST['submit'])){ //vérification que le formulaire a bien été envoyé
 
 $title = addslashes($_POST['title']);
@@ -17,11 +22,35 @@ $quality = addslashes($_POST['quality']);
 $synopsis = addslashes($_POST['synopsis']);
 $trailer = addslashes($_POST['trailer']);
 $poster = addslashes($_POST['poster']);
+$user = $_SESSION['username'];
 
+$kind = $_POST['kind'];
+$fkind = null; //fkind = finalKind = valeur (String) qui sera transmise à la base de données
+$sofKind = count($kind); //sof = size of; valeur = nombre de catégories cochées + 1 (tableau indexé à partir de 0)
+
+if ($sofKind == 0){
+  $fkind = null;
+} else if ($sofKind == 1){
+  $fkind = "".$kind[0];
+} else if ($sofKind == 2) {
+  $fkind = "".$kind[0].", ".$kind[1];
+} else if ($sofKind == 3) {
+  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2];
+} else if ($sofKind == 4) {
+  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3];
+} else if ($sofKind == 5) {
+  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3].", ".$kind[4];
+} else if ($sofKind == 6) {
+  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3].", ".$kind[4].", ".$kind[5];
+} else if ($sofKind == 7) {
+  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3].", ".$kind[4].", ".$kind[5].", ".$kind[6];
+} else if ($sofKind == 8) {
+  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3].", ".$kind[4].", ".$kind[5].", ".$kind[6].", ".$kind[7];
+}
 
 
   $query = "INSERT INTO
-  `movies` (`title`, `date`, `film_director`, `actors`, `duration`, `languages`, `subs`, `quality`, `synopsis`, `ytb`, `poster`)
+  `movies` (`title`, `date`, `film_director`, `actors`, `duration`, `languages`, `subs`, `quality`, `synopsis`, `ytb`, `poster`, `user`, `kind`)
 VALUES
   (
     '$title',
@@ -34,7 +63,9 @@ VALUES
     '$quality',
     '$synopsis',
     '$trailer',
-    '$poster'
+    '$poster',
+    '$user',
+    '$fkind'
   )"; //création de la query avec récupération des valeurs du formulaire
 
   $insert = mysqli_query($conn,$query); //éxecution de la query
@@ -80,28 +111,28 @@ VALUES
 <input class="form-control" type="text" name="duration" placeholder="Durée" id="duration" style="font-family:'Alfa Slab One', cursive;">
 
 
-                        <!--<p style="font-family:'Alfa Slab One', cursive;padding-top:13px;padding-left:16px;color:rgb(122,130,136);">Genre :</p>
-                        <div class="custom-control custom-checkbox" style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox1" class="custom-control-input"><label class="custom-control-label" for="checkbox1" style="font-family:'Alfa Slab One', cursive;">Animation</label></div>
+                        <p style="font-family:'Alfa Slab One', cursive;padding-top:13px;padding-left:16px;color:rgb(122,130,136);">Genre :</p>
+                        <div class="custom-control custom-checkbox" style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Animation" type="checkbox" id="checkbox1" class="custom-control-input"><label class="custom-control-label" for="checkbox1" style="font-family:'Alfa Slab One', cursive;">Animation</label></div>
                         <div class="custom-control custom-checkbox"
-                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox2" class="custom-control-input"><label class="custom-control-label" for="checkbox2" style="font-family:'Alfa Slab One', cursive;">Fantastique / S-F</label></div>
+                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Fantastique" type="checkbox" id="checkbox2" class="custom-control-input"><label class="custom-control-label" for="checkbox2" style="font-family:'Alfa Slab One', cursive;">Fantastique / S-F</label></div>
                         <div class="custom-control custom-checkbox"
-                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox3" class="custom-control-input"><label class="custom-control-label" for="checkbox3" style="font-family:'Alfa Slab One', cursive;">Biopic</label></div>
+                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Biopic" type="checkbox" id="checkbox3" class="custom-control-input"><label class="custom-control-label" for="checkbox3" style="font-family:'Alfa Slab One', cursive;">Biopic</label></div>
                         <div class="custom-control custom-checkbox"
-                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox4" class="custom-control-input"><label class="custom-control-label" for="checkbox4" style="font-family:'Alfa Slab One', cursive;">Horreur</label></div>
+                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Horreur" type="checkbox" id="checkbox4" class="custom-control-input"><label class="custom-control-label" for="checkbox4" style="font-family:'Alfa Slab One', cursive;">Horreur</label></div>
                         <div class="custom-control custom-checkbox"
-                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox5" class="custom-control-input"><label class="custom-control-label" for="checkbox5" style="font-family:'Alfa Slab One', cursive;">Comédie</label></div>
+                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Comédie" type="checkbox" id="checkbox5" class="custom-control-input"><label class="custom-control-label" for="checkbox5" style="font-family:'Alfa Slab One', cursive;">Comédie</label></div>
                         <div class="custom-control custom-checkbox"
-                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox6" class="custom-control-input"><label class="custom-control-label" for="checkbox6" style="font-family:'Alfa Slab One', cursive;">Historique</label></div>
+                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Historique" type="checkbox" id="checkbox6" class="custom-control-input"><label class="custom-control-label" for="checkbox6" style="font-family:'Alfa Slab One', cursive;">Historique</label></div>
                         <div class="custom-control custom-checkbox"
-                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox7" class="custom-control-input"><label class="custom-control-label" for="checkbox7" style="font-family:'Alfa Slab One', cursive;">Documentaire</label></div>
+                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Documentaire" type="checkbox" id="checkbox7" class="custom-control-input"><label class="custom-control-label" for="checkbox7" style="font-family:'Alfa Slab One', cursive;">Documentaire</label></div>
                         <div class="custom-control custom-checkbox"
-                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox8" class="custom-control-input"><label class="custom-control-label" for="checkbox8" style="font-family:'Alfa Slab One', cursive;">Police / Thriller</label></div>
+                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Police / Thriller" type="checkbox" id="checkbox8" class="custom-control-input"><label class="custom-control-label" for="checkbox8" style="font-family:'Alfa Slab One', cursive;">Police / Thriller</label></div>
                         <div class="custom-control custom-checkbox"
-                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox9" class="custom-control-input"><label class="custom-control-label" for="checkbox9" style="font-family:'Alfa Slab One', cursive;">Drame</label></div>
+                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Drame" type="checkbox" id="checkbox9" class="custom-control-input"><label class="custom-control-label" for="checkbox9" style="font-family:'Alfa Slab One', cursive;">Drame</label></div>
                         <div class="custom-control custom-checkbox"
-                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input type="checkbox" id="checkbox10" class="custom-control-input"><label class="custom-control-label" for="checkbox10" style="font-family:'Alfa Slab One', cursive;">Aventure</label></div>
+                            style="/*padding-left:0;*/color:rgb(122,130,136);"><input name="kind[]" value="Aventure" type="checkbox" id="checkbox10" class="custom-control-input"><label class="custom-control-label" for="checkbox10" style="font-family:'Alfa Slab One', cursive;">Aventure</label></div>
 
--->
+
 <input class="form-control" type="text" name="languages" placeholder="Langues" style="font-family:'Alfa Slab One', cursive;margin-top:20px;">
 <input class="form-control" type="text" name="subs" placeholder="Sous-Titres" style="font-family:'Alfa Slab One', cursive;margin-bottom:20px;">
 
