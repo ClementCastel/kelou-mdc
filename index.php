@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+require_once("./config.php");
+
+if (isset($_SESSION['logged']) && $_SESSION['logged'] == true){
+} else {
+  header("Location: login.php");
+}
+
+?>
 <html style="height:100%;width:100%;">
 
 <head>
@@ -25,7 +33,6 @@
 
 
 <?php
-      require_once('config.php');
       $conn = mysqli_connect(host, user,pass, db);
 
       $sql = "SELECT * FROM movies";
