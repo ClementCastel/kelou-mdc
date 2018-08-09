@@ -9,7 +9,6 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true){
 
 ?>
 
-
 <html>
 
 <head>
@@ -18,33 +17,35 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true){
     <title>search-page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anonymous+Pro">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Condensed">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/slate/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/movie.styles.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
 
-<body>
+<body style="background-color:rgb(29,29,29);">
     <div style="width:100%;height:100%;margin:0;padding:0;">
-        <div style="/*position:fixed;*/width:100%;height:60px;background-color:rgb(47,19,69);padding:0;margin:0;top:0;left:0;border-bottom-color:rgb(0,0,0);border-bottom-style:dashed;">
-            <div><i class="fa fa-film" style="padding:0;color:rgb(255,255,255);font-size:40px;margin-top:10px;margin-left:15px;"></i><i class="fa fa-tv" style="padding:0;color:rgb(255,255,255);font-size:40px;margin:0;margin-left:15px;"></i>
-                <p class="text-center"
-                    style="color:rgb(250,255,0);font-family:'Barlow Condensed', sans-serif;font-size:40px;margin-left:120px;margin-bottom:0;padding:0;margin-right:200px;margin-top:-53px;font-weight:bold;font-style:italic;">KMDC - Home</p><button class="btn btn-primary" type="button" style="float:right;margin-top:-50px;margin-right:20px;padding-top:8px;padding-bottom:8px;">Ajouter un film</button></div>
+        <div class="row" style="background-color:rgb(21,21,21);margin:0;padding:0;height:65px;">
+            <div class="col-lg-1" style="width:70px;height:80px;margin:0;padding:0;"><i class="fa fa-film" style="padding:0;color:rgb(255,255,255);font-size:40px;margin-top:10px;margin-left:15px;"></i></div>
+            <div class="col-lg-10" style="margin:0;padding:0;">
+                <p class="text-center" style="color:rgb(204,7,30);font-family:'Barlow Condensed', sans-serif;font-size:40px;margin-bottom:0;padding:0;font-weight:bold;font-style:italic;">KMDC - Search Engine</p>
+            </div>
+            <div class="col-lg-1" style="margin:0;padding:0;width:125px;flex:0;">
+                <a href="./admin/index.php"><p class="text-right float-right" style="margin:0;padding:0;color:rgb(79,79,79);font-size:20px;border-bottom:2px solid rgb(126,126,126);text-align:right;width:125px;">Gérer les films</p></a>
+                <a href="./logout.php"><p class="text-right float-right" style="margin:0;padding:0;color:rgb(79,79,79);font-size:20px;border-bottom:2px solid rgb(126,126,126);text-align:right;width:115px;">Déconnexion</p></a>
+            </div>
         </div>
         <div style="width:100%;height:100%;">
-            <div style="margin:0;padding:0;height:59px;background-color:rgb(205,205,205);border:5px solid rgb(67,67,67);border-radius:10px;margin-right:40px;margin-left:50px;margin-top:50px;">
-                <form style="width:100%;height:100%;" method="get">
+            <div style="margin:0;padding:0;height:59px;background-color:rgb(205,205,205);border:2px solid rgb(0,0,0);border-radius:20px;margin-right:40px;margin-left:50px;margin-top:50px;">
+                <form style="width:100%;height:100%;">
                     <div class="form-row" style="margin:0;padding:0;height:100%;width:100%;">
-                        <div class="col-xl-9" style="margin:0;padding:0;"><input class="form-control" name="term" type="text" required="" placeholder="Search a title" style="width:100%;height:100%;padding:0;padding-left:20px;font-size:25px;font-family:'Barlow Condensed', sans-serif;margin:0;border-radius:10px;"></div>
+                        <div class="col-xl-9" style="margin:0;padding:0;"><input class="form-control" name="term" type="text" required="" placeholder="Search a title" style="width:100%;height:100%;padding:0;padding-left:20px;font-size:25px;font-family:'Barlow Condensed', sans-serif;margin:0;border-top-left-radius:10px;border-bottom-left-radius:10px;"></div>
                         <div
-                            class="col-xl-3" style="padding:0;margin:0;"><button class="btn btn-primary" type="submit" style="width:100%;height:100%;border-radius:0;">Search</button></div>
+                            class="col-xl-3" style="padding:0;margin:0;"><button class="btn btn-light" type="button" style="width:100%;height:100%;border-top-right-radius:10px;border-bottom-right-radius:10px;background-color:rgb(79,79,79);color:rgb(255,255,255);border-top-left-radius:0;border-bottom-left-radius:0;">Search</button></div>
             </div>
             </form>
         </div>
-
-        <div class="divider" style="width:100%;height:100%;color:rgb(37,37,39);margin:0;padding:0;padding-top:50px;padding-left:75px;padding-right:75px;display:grid;grid-auto-rows:350px;margin-top:60px;">
-
+        <div class="divider" style="width:100%;color:rgb(37,37,39);margin:0;padding:0;padding-top:50px;padding-left:75px;padding-right:75px;display:grid;grid-auto-rows:350px;margin-top:60px;min-height:573px;">
+            
           <?php
                 $conn = mysqli_connect(host, user,pass, db);
                 $sql = null;
@@ -69,25 +70,12 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true){
                 <div style="height:65px;background-color:#ffffff;align-content:center;width:180px;line-height:65px;text-align:center;">
                     <p style="font-family:'Barlow Condensed', sans-serif;font-size:20px;color:rgb(0,0,0);font-weight:normal;font-style:normal;width:100%;vertical-align:middle;display:inline-block;line-height:1.2;margin-bottom:0;margin-top:-5px;"><?php echo $data['title']?></p>
                 </div>
-            </div>
-          </a>
+            </div></a>
 
-        <?php }
+            <?php }
         }
         ?>
-
-        </div>
-    </div>
-    <div style="height:60px;width:100%;margin:0;padding:0;background-color:#341f41;border-top-style:dashed;border-top-color:rgb(0,0,0);margin-top:250px;">
-        <div class="d-inline-block" style="width:33%;height:60px;vertical-align:top;">
-            <p class="text-left text-warning" style="font-family:Aldrich, sans-serif;font-size:20px;/*vertical-align:baseline;*/margin:0;padding:0;margin-top:4%;">&nbsp; ©Kelou - <a href="https://kelou.fr/">Clément Castel</a></p>
-        </div>
-        <div class="d-inline-block" style="width:33%;height:60px;vertical-align:top;"><i class="fa fa-twitter" style="font-size:30px;color:rgb(255,255,255);height:30px;width:30px;padding-left:15%;"></i><i class="fa fa-flickr" style="font-size:30px;color:rgb(255,255,255);width:30px;height:30px;padding-left:30%;margin-top:4%;"></i>
-            <i
-                class="fa fa-git" style="font-size:30px;color:rgb(255,255,255);width:30px;height:30px;padding-left:30%;"></i>
-        </div>
-        <div class="d-inline-block" style="width:33%;height:60px;vertical-align:top;">
-            <p class="lead text-right text-warning" style="font-size:15px;font-family:Aldrich, sans-serif;padding:0;margin:0;margin-top:4%;">Dev. Buid: &nbsp;v1.0.2</p>
+        
         </div>
     </div>
     </div>
