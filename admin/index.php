@@ -29,6 +29,10 @@ $conn = mysqli_connect(host, user,pass, db);
         </div>
         <div style="width:70%;margin-left:15%;margin-right:15%;margin-top:70px;margin-bottom:70px;">
 
+        <div class="row" id="add-movie" style="margin-bottom:10px;min-height:60px;border:double 2px rgb(0,0,0);border-radius:5px;height:65px;">
+            <div class="col-lg-12" style="padding:0;margin:0;background-color:#ccc;color:rgb(0,0,0);font-size:25px;font-weight:normal;border-top-left-radius:5px;border-bottom-left-radius:5px;"><a href="./add.php"><button class="btn btn-primary" type="button" style="width:100%;height:100%;margin:0;padding:0;color:rgb(255,255,255);font-size:35px;font-family:'Barlow Condensed', sans-serif;font-weight:bold;border-radius:0;border:0;">Ajouter un film</button></a></div>
+        </div>
+
         <?php
 
         if (empty($_GET['id'])){
