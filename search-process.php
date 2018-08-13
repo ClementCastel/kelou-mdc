@@ -4,7 +4,7 @@ require_once("config.php");
 $conn = mysqli_connect(host, user,pass, db);
 $sql = null;
 
-if (isset($_POST['search']) && !empty($_POST['search'])){
+if (!empty($_POST['search'])){
 
     $search = $_POST['search'];
     $sql = "SELECT * FROM movies WHERE `title` LIKE '%$search%' AND user='$_SESSION[username]'";

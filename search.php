@@ -43,7 +43,27 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true){
             </form>
         </div>
         <div id="divider" class="divider" style="width:100%;color:rgb(37,37,39);margin:0;padding:0;padding-top:50px;padding-left:75px;padding-right:75px;display:grid;grid-auto-rows:350px;margin-top:60px;min-height:573px;">        
+        
+        <?php 
+        $conn = mysqli_connect(host, user,pass, db);
+        $sql = "SELECT * FROM movies WHERE user='$_SESSION[username]'";
+        $result = mysqli_query($conn, $sql);
+         if (mysqli_num_rows($result) > 0){
+        while ($data = mysqli_fetch_assoc($result)){ ?>
+        <a href="./movie.php?id=<?php echo ($data['ID']); ?>">
+        <div class="p-movie" style="width:180px;height:335px;">
+        <div class="movie" style="width:180px;height:270px;background-image:url(&quot; <?php echo $data['poster']?> &quot;);"></div>
+        <div style="height:65px;background-color:#ffffff;align-content:center;width:180px;line-height:65px;text-align:center;">
+        <p style="font-family:'Barlow Condensed', sans-serif;font-size:20px;color:rgb(0,0,0);font-weight:normal;font-style:normal;width:100%;vertical-align:middle;display:inline-block;line-height:1.2;margin-bottom:0;margin-top:-5px;"><?php echo $data['title']?></p>
         </div>
+        </div></a>
+        <?php }}?>
+
+        
+        ?>
+
+
+    </div>
     </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
