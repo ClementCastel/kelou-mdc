@@ -14,6 +14,11 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 
+
+.content {
+  display:none;
+}
+
 .lloader
 {
   width: 100%;
@@ -22,8 +27,8 @@
   top: 0;
   left: 0;
   font-family: 'Open Sans';
-  color: #EB8C79;
-  background-color: #18506F;
+  color: rgb(204,7,30);
+  background-color: rgb(29,29,29);
 }
 
 .containr
@@ -125,13 +130,13 @@
 .banner-left::before
 {
   left: -1px;
-  border-left-color: #18506F;
+  border-left-color: rgb(29,29,29);
 }
 
 .banner-right::before
 {
   right: -1px;
-  border-right-color: #18506F;
+  border-right-color: rgb(29,29,29);
 }
 
 .hide {
@@ -139,11 +144,13 @@
 }
 </style>
 
-<!-- === END OF LOADER ===-->
-
+<!-- === END OF LOADER'S STYLE ===-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
         $(document).ready(function() {
-            console.log("WORKS !");
-	        $("#loader").fadeOut("1000");
+          console.log("LOADED !");
+	        $("#loader").fadeOut(1500);
+          $(".content").removeClass('content');
+          console.log("WORKS !");
         })
 </script>

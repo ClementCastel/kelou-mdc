@@ -31,7 +31,7 @@ $id = $_GET['id'];
 
             if ($data['user'] == $_SESSION['username']) {  ?>
 
-    <div style="width:100%;height:100%;margin:0;padding:0;">
+    <div class="content" style="width:100%;height:100%;margin:0;padding:0;">
         <div class="row" style="background-color:rgb(21,21,21);margin:0;padding:0;height:65px;">
             <div class="col-lg-1" style="width:70px;height:80px;margin:0;padding:0;"><a href="./index.php"><i class="fa fa-film" style="padding:0;color:rgb(255,255,255);font-size:40px;margin-top:10px;margin-left:15px;"></i></a></div>
             <div class="col-lg-10" style="margin:0;padding:0;">

@@ -24,4 +24,6 @@ define ('db', 'kmdc');
 
 session_start();
 
+error_reporting(E_ALL ^ E_DEPRECATED);
+require_once("loader.php");
 ?>

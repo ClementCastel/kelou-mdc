@@ -75,8 +75,7 @@ insertData($username, $name, $mail, $pass);
 </head>
 
 <body style="background-color:rgb(29,29,29);">
-    <div></div>
-    <div style="width:100%;height:100%;margin:0;padding:0;">
+    <div class="content" style="width:100%;height:100%;margin:0;padding:0;">
         <div class="row" style="background-color:rgb(21,21,21);margin:0;padding:0;height:65px;">
             <div class="col-lg-12" style="margin:0;padding:0;">
                 <p class="text-center" style="color:rgb(204,7,30);font-family:'Barlow Condensed', sans-serif;font-size:40px;margin-bottom:0;padding:0;font-weight:bold;font-style:italic;">KMDC - REGISTER</p>
