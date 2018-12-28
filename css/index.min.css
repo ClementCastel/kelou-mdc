@@ -1,0 +1,82 @@
+.movie:hover,
+.p-movie:hover .movie {
+	opacity: .5
+}
+
+div.background {
+	z-index: -1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-attachment: local;
+	background: -webkit-linear-gradient(bottom, #2B2E48, #00416A); 
+	background: -o-linear-gradient(left, #2B2E48, #00416A); 
+	background: -moz-linear-gradient(left, #2B2E48, #00416A); 
+	background: linear-gradient(left, #2B2E48, #00416A);
+}
+
+@media (min-width:1905px) {
+	.divider {
+		grid-template-columns: 235px 235px 235px 235px 235px 235px 235px;   
+	}
+}
+
+@media (min-width:1710px) and (max-width:1905px) {
+	.divider {
+		grid-template-columns: 235px 235px 235px 235px 235px 235px 235px
+	}
+}
+
+@media (min-width:1515px) and (max-width:1710px) {
+	.divider {
+		grid-template-columns: 235px 235px 235px 235px 235px 235px
+	}
+}
+
+@media (min-width:1320px) and (max-width:1515px) {
+	.divider {
+		grid-template-columns: 235px 235px 235px 235px 235px 235px
+	}
+}
+
+@media (min-width:1125px) and (max-width:1320px) {
+	.divider {
+		grid-template-columns: 235px 235px 235px 235px 235px
+	}
+}
+
+@media (min-width:930px) and (max-width:1125px) {
+	.divider {
+		grid-template-columns: 235px 235px 235px 235px
+	}
+}
+
+@media (min-width:735px) and (max-width:930px) {
+	.divider {
+		grid-template-columns: 235px 235px 235px
+	}
+}
+
+@media (min-width:540px) and (max-width:735px) {
+	.divider {
+		grid-template-columns: 235px 235px
+	}
+}
+
+@media (min-width:345px) and (max-width:540px) {
+	.divider {
+		grid-template-columns: 235px
+	}
+}
+
+.movie {
+	position: relative;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-repeat: no-repeat;
+	padding: 50px
+}
