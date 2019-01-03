@@ -1,5 +1,5 @@
 <?php 
-
+ini_set("display_errors",0);error_reporting(0);
 require_once("config.php");
 
 ?>
@@ -10,6 +10,7 @@ require_once("config.php");
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="css/header.style.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
 </head>
 
 <body class="header">
