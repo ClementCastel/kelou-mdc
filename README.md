@@ -11,6 +11,24 @@
   L'idée de créer un site me permettant de gérer les films que j'ai m'est venu de l'application Plex, sauf que cette dernière ne remplissait pas mes besoins. Mon souhait était d'avoir une application web permettant d'ajouter les films manuellement en choississant les champs que je souhaite remplir et ensuite de pouvoir consulter ce contenu directement depuis mon ordinateur ou un smartphone. 
   Avec plus de 600 films sur mon disque dur externe c'est dur de savoir si je possède un film ou non lorsque je suis hors de chez-moi et que j'ai (par exemple) envie de le voir le soir même. Par la même occasion, je télécharge souvent des films parce que la bande annonce m'attire fortement alors j'ai ajouté la possibilité d'afficher celles-cis sur la page de chaque film, ainsi il m'est rapide de voir un rapide extrait accompagné du synopsis pour savoir à quoi m'attendre.
 
+### ------------- PREVIEW -------------
+
+Accueil :
+
+![page accueil](https://raw.githubusercontent.com/Th3Sword290/kelou-mdc/master/preview/preview-index.png)
+
+
+Page film :
+
+![page film 1](https://raw.githubusercontent.com/Th3Sword290/kelou-mdc/master/preview/preview-movie-1.png)
+![page film 2](https://raw.githubusercontent.com/Th3Sword290/kelou-mdc/master/preview/preview-movie-2.png)
+
+
+Page recherche (par date) :
+
+![page recherche](https://raw.githubusercontent.com/Th3Sword290/kelou-mdc/master/preview/preview-search.png)
+
+
 
 ### ------------- LE PLAN DU SITE -------------
 
@@ -34,7 +52,7 @@
 
 ### ------------- UNE DATE DE SORTIE OFFICIELLE ? -------------
 
-La v1.0 est pour l'instant prévue pour début juillet 2018. Avec le bac je n'aurai malheuresement pas assez de temps pour travailler dessus avant et pour une sortie digne de ce nom je souhaite sortir quelque chose de propre dont je suis fier.
+La v1.0 est pour l'instant prévue pour janvier 2019. 
 
 
 
