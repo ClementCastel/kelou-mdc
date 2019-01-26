@@ -28,28 +28,7 @@ $poster = addslashes($_POST['poster']);
 $user = $_SESSION['ID'];
 
 $kind = $_POST['kind'];
-$fkind = null; //fkind = finalKind = valeur (String) qui sera transmise à la base de données
-$sofKind = count($kind); //sof = size of; valeur = nombre de catégories cochées + 1 (tableau indexé à partir de 0)
-
-if ($sofKind == 0){
-  $fkind = null;
-} else if ($sofKind == 1){
-  $fkind = "".$kind[0];
-} else if ($sofKind == 2) {
-  $fkind = "".$kind[0].", ".$kind[1];
-} else if ($sofKind == 3) {
-  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2];
-} else if ($sofKind == 4) {
-  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3];
-} else if ($sofKind == 5) {
-  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3].", ".$kind[4];
-} else if ($sofKind == 6) {
-  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3].", ".$kind[4].", ".$kind[5];
-} else if ($sofKind == 7) {
-  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3].", ".$kind[4].", ".$kind[5].", ".$kind[6];
-} else if ($sofKind == 8) {
-  $fkind = "".$kind[0].", ".$kind[1].", ".$kind[2].", ".$kind[3].", ".$kind[4].", ".$kind[5].", ".$kind[6].", ".$kind[7];
-}
+$fkind = join(', ',$kind);
 
 
   $query = "INSERT INTO
@@ -104,18 +83,24 @@ VALUES
 				</span>
 
 				<div class="wrap-input1 validate-input" data-validate = "Name is required">
-                    <input class="input1" type="text" name="IMDB" placeholder="Lien IMDB" id="getData_url">
+                    <input class="input1" type="text" name="IMDB" placeholder="Rechercher le titre de votre film" id="getData_url">
 					<span class="shadow-input1"></span>
                 </div>
+
+                <div class="pl">
+                    <ul id="table-result" class="pl">
+            
+                    </ul>
+                </div>
                 
-				<div class="container-contact1-form-btn">
+				<!--<div class="container-contact1-form-btn">
 					<button style="margin-bottom: 50px;" type="button" class="contact1-form-btn" onclick="getData();">
 						<span>
 							Pré-remplir les champs
 							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 						</span>
 					</button>
-				</div>
+				</div>-->
             </form>
             <form class="contact1-form validate-form" autocomplete="off" method="POST">
 				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -245,11 +230,9 @@ VALUES
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
 
-function getData (){
-  var url = $("input#getData_url").val();
-  url = url.slice(27,36);
-  console.log(url);
-  const dataForm = fetch('https://api.themoviedb.org/3/movie/' + url + '?api_key=1b523a22be6bbcb7b260693e379e6889')
+function getData (id){
+  console.log(id);
+  const dataForm = fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=1b523a22be6bbcb7b260693e379e6889')
     .then (result => result.json())
     .then (data => {
       const data_title =  data.original_title;
@@ -264,7 +247,7 @@ function getData (){
       $('#synopsis').val(data_synopsis);
   });
 
-  const data2Form = fetch('https://api.themoviedb.org/3/movie/'+ url + '/videos?api_key=1b523a22be6bbcb7b260693e379e6889&language=fr-FR')
+  const data2Form = fetch('https://api.themoviedb.org/3/movie/'+ id + '/videos?api_key=1b523a22be6bbcb7b260693e379e6889&language=fr-FR')
     .then (result => result.json())
     .then (data => {
       if (data.results[0].type == "Trailer"){
@@ -278,7 +261,7 @@ function getData (){
           $("input#ytb").val(data_video);}
     });
 
-    const data3Form = fetch ('https://api.themoviedb.org/3/movie/' + url + '/credits?api_key=1b523a22be6bbcb7b260693e379e6889')
+    const data3Form = fetch ('https://api.themoviedb.org/3/movie/' + id + '/credits?api_key=1b523a22be6bbcb7b260693e379e6889')
       .then (result => result.json())
       .then (data => {
           console.log(data);
@@ -295,5 +278,38 @@ function getData (){
       })
 
 }  </script>
+
+
+<?php 
+
+if (isset($_GET['preload']) && !empty($_GET['preload'])){
+    echo '<script>getData(\''.$_GET['preload'].'\');</script>';
+}
+
+?>
+
+
+    <script>
+
+$(document).ready(function () {
+    $('input#getData_url').keyup(function(){
+
+        $('#table-result').empty();
+
+        var transmittedInput = $('input#getData_url').val();
+
+        var table = document.getElementById('table-result'); 
+        console.log($('#table-result').html);
+        const dataForm = fetch('https://api.themoviedb.org/3/search/movie?api_key=1b523a22be6bbcb7b260693e379e6889&query='+transmittedInput)
+            .then (result => result.json())
+            .then (data => {
+            for (var i = 0; i < data.results.length && i < 8; i++){
+                $('#table-result').append("<a class='pl' href='./add.php?preload="+data.results[i].id+"'><li class='pl'><img class='pl' src='https://image.tmdb.org/t/p/w500/"+data.results[i].poster_path+"'/><h3 class='pl'>"+data.results[i].title+"</h3><p class='pl'>"+data.results[i].overview+"</p></li></a>");
+            }
+        });
+    
+    })       
+})
+</script>
 </body>
 </html>

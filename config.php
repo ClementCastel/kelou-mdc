@@ -14,9 +14,9 @@ define ('host','localhost');
 
 define ('user','root');
 
-define ('pass', '');
+define ('pass', 'root');
 
-define ('db', 'logpass');
+define ('db', 'kmdc');
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #                               ERREURS                                   -
