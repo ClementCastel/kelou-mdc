@@ -30,7 +30,7 @@ $uid = $_GET['id'];
             if ($data['user'] == $_SESSION['ID']) {  ?>
                 <table>
                     <tr>
-                        <h1 class="mv" style="min-height: 42px; margin-top: 30px;"><span class="yellow mv"><?php echo $data['title']; ?></span></h1>
+                        <h1 class="mv" style="min-height: 42px; margin-top: 30px;"><span class="yellow mv"><?php echo $data['title']; ?></span> - <a href="http://kmdc.kelou.fr/admin/edit.php?uid=<?php echo $uid; ?>"><i title="Editer" style="font-size: 35px;" class="yellow far fa-edit"></i></a></h1>
                     </tr>
                     <tr>
 
