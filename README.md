@@ -65,10 +65,10 @@ La v1.0 est pour l'instant prévue pour janvier 2019.
  - [x] Index de gestion pour chacun de ses films
  - [x] Page d'accueil (index) avec tous vos films
  - [x] Page détaillée pour chaque films
- - [ ] Preview GitHub
- - [ ] ReadMe complet
- - [ ] Images de présentations
+ - [x] Preview GitHub
+ - [x] ReadMe complet
+ - [x] Images de présentations
  - [ ] Tuto vidéo
  - [ ] DocuWiki
- - [ ] Pré-remplissage des champs automatiques lors que l'on tappe le titre
+ - [x] Pré-remplissage des champs automatiques lors que l'on tappe le titre
  - [ ] Pré-remplissage automatique du champ 'genre.s'
